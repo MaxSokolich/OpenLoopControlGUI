@@ -20,7 +20,7 @@ class Looping_Thread(QThread):
         while self._run_flag:
                 actions = 1
                 self.actions_signal.emit(actions)
-                QThread.msleep(10)
+                QThread.msleep(50)
 
 
     def stop(self):
