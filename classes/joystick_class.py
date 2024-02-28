@@ -242,6 +242,7 @@ class Windows_Controller:
             
             #zero condition
             else:
+                self.typ = 0 
                 self.Bx = 0
                 self.By = 0
                 self.Bz = 0
