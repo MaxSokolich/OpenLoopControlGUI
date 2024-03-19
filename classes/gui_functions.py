@@ -96,7 +96,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.controller_actions = Linux_Controller()
         elif "Windows" in platform.platform():
             self.tbprint("Detected OS:  Windows")
-            PORT = "COM3"
+            PORT = "COM4"
             self.controller_actions = Windows_Controller()
         else:
             self.tbprint("undetected operating system")
