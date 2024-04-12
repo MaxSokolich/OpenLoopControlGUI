@@ -84,6 +84,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.joystick_status = False
         self.manual_status = False
 
+        self.excel_file_name = None
+        self.excel_actions_df = None
+        self.excel_actions_status = False
+
 
         #connect to arduino
         if "mac" in platform.platform():
@@ -127,7 +131,10 @@ class MainWindow(QtWidgets.QMainWindow):
             self.joystick = pygame.joystick.Joystick(0)
             self.joystick.init()
             self.tbprint("Connected to: "+str(self.joystick.get_name()))
+    
         
+
+
         self.ui.gradient_status_checkbox.toggled.connect(self.gradientcommand)
         self.ui.savedatabutton.clicked.connect(self.savedata)
         self.ui.magneticfrequencydial.valueChanged.connect(self.get_slider_vals)
@@ -148,10 +155,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.import_excel_actions.clicked.connect(self.read_excel_actions)
         self.ui.apply_actions.clicked.connect(self.apply_excel_actions)
 
+        
         self.excel_file_name = None
         self.excel_actions_df = None
         self.excel_actions_status = False
-     
+
+
 
     def spinbox_alphachanged(self):
         self.ui.alphadial.setValue(self.ui.alphaspinBox.value())

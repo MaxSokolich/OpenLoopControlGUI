@@ -10,9 +10,11 @@ class Looping_Thread(QThread):
     def __init__(self, parent):
         super().__init__(parent=parent)
         self.parent = parent
-
-  
         self._run_flag = True
+        #QThread.msleep(500)
+        
+
+
 
     def run(self):
     
