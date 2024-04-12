@@ -51,8 +51,8 @@ class ArduinoHandler:
         alpha = round(alpha,3)
         gamma = round(gamma,3)
         psi = round(psi,3)
-        Bx = round(Bx,3)
-        By = round(By,3)
+        Bx = round(Bx,3) 
+        By = round(By,3) 
         Bz = round(Bz,3)
 
         data = [float(Bx), float(By), float(Bz), float(alpha), float(gamma), float(freq),float(psi), float(gradient_status), float(acoustic_freq)]

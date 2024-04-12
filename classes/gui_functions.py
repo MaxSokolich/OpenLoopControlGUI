@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QFileDialog
 import sys
 from PyQt5.QtGui import QWheelEvent
 from PyQt5 import QtGui
@@ -84,11 +84,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.joystick_status = False
         self.manual_status = False
 
+        self.excel_file_name = None
+        self.excel_actions_df = None
+        self.excel_actions_status = False
+
 
         #connect to arduino
         if "mac" in platform.platform():
             self.tbprint("Detected OS: macos")
-            PORT = "/dev/cu.usbmodem11301"
+            PORT = "/dev/cu.usbmodem11401"
             self.controller_actions = Mac_Controller()
         elif "Linux" in platform.platform():
             self.tbprint("Detected OS: Linux")
@@ -96,7 +100,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.controller_actions = Linux_Controller()
         elif "Windows" in platform.platform():
             self.tbprint("Detected OS:  Windows")
-            PORT = "COM3"
+            PORT = "COM4"
             self.controller_actions = Windows_Controller()
         else:
             self.tbprint("undetected operating system")
@@ -127,7 +131,10 @@ class MainWindow(QtWidgets.QMainWindow):
             self.joystick = pygame.joystick.Joystick(0)
             self.joystick.init()
             self.tbprint("Connected to: "+str(self.joystick.get_name()))
+    
         
+
+
         self.ui.gradient_status_checkbox.toggled.connect(self.gradientcommand)
         self.ui.savedatabutton.clicked.connect(self.savedata)
         self.ui.magneticfrequencydial.valueChanged.connect(self.get_slider_vals)
@@ -145,7 +152,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.manualfieldBx.valueChanged.connect(self.get_slider_vals)
         self.ui.manualfieldBy.valueChanged.connect(self.get_slider_vals)
         self.ui.manualfieldBz.valueChanged.connect(self.get_slider_vals)
-     
+        self.ui.import_excel_actions.clicked.connect(self.read_excel_actions)
+        self.ui.apply_actions.clicked.connect(self.apply_excel_actions)
+
+        
+        self.excel_file_name = None
+        self.excel_actions_df = None
+        self.excel_actions_status = False
+
+
 
     def spinbox_alphachanged(self):
         self.ui.alphadial.setValue(self.ui.alphaspinBox.value())
@@ -155,6 +170,24 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def gradientcommand(self):
         self.gradient_status = int(self.ui.gradient_status_checkbox.isChecked())
+    
+
+    def read_excel_actions(self):
+        options = QFileDialog.Options()
+        self.excel_file_name, _ = QFileDialog.getOpenFileName(self, "Open Excel File", "", "Excel Files (*.xlsx *.xls)", options=options)
+        if self.excel_file_name:
+            self.excel_actions_df = pd.read_excel(self.excel_file_name)
+            
+        
+    def apply_excel_actions(self):
+        if self.ui.apply_actions.isChecked():
+            self.excel_actions_status = True
+            self.actions_counter = 0
+            self.ui.apply_actions.setText("Stop")
+        else:
+            self.excel_actions_status = False
+            self.ui.apply_actions.setText("Apply")
+            self.apply_actions(False)
 
 
 
@@ -188,6 +221,28 @@ class MainWindow(QtWidgets.QMainWindow):
             self.psi = np.radians(self.ui.psidial.value())
 
             self.alpha = np.radians(self.ui.alphadial.value())
+        
+        elif self.excel_actions_status == True and self.excel_actions_df is not None:            
+            self.actions_counter +=1
+            if self.actions_counter < self.excel_actions_df['Frame'].iloc[-1]:
+                filtered_row = self.excel_actions_df[self.excel_actions_df['Frame'] == self.actions_counter]
+                
+                self.Bx = float(filtered_row["Bx"])
+                self.By = float(filtered_row["By"])
+                self.Bz = float(filtered_row["Bz"])
+                self.alpha = float(filtered_row["Alpha"])
+                self.gamma = float(filtered_row["Gamma"])
+                self.freq = float(filtered_row["Rolling Frequency"])
+                self.psi = float(filtered_row["Psi"])
+                self.gradient = float(filtered_row["Gradient"])
+                self.acoustic_freq = float(filtered_row["Acoustic Frequency"])
+            
+            else:
+                self.excel_actions_status = False
+                self.ui.apply_actions.setText("Apply")
+                self.ui.apply_actions.setChecked(False)
+                self.apply_actions(False)
+
             
         
         #DEFINE CURRENT MAGNETIC FIELD OUTPUT TO A LIST 
