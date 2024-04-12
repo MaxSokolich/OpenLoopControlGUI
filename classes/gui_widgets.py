@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(933, 506)
+        MainWindow.resize(1259, 462)
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setPointSize(12)
@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.plainTextEdit = QtWidgets.QPlainTextEdit(self.centralwidget)
-        self.plainTextEdit.setGeometry(QtCore.QRect(20, 310, 581, 161))
+        self.plainTextEdit.setGeometry(QtCore.QRect(10, 330, 1231, 91))
         self.plainTextEdit.setMouseTracking(True)
         self.plainTextEdit.setStyleSheet("font-size: 15pt; font: Arial;")
         self.plainTextEdit.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
@@ -35,7 +35,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit.setCenterOnScroll(False)
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.resetdefaultbutton = QtWidgets.QPushButton(self.centralwidget)
-        self.resetdefaultbutton.setGeometry(QtCore.QRect(780, 120, 131, 25))
+        self.resetdefaultbutton.setGeometry(QtCore.QRect(760, 120, 131, 25))
         self.resetdefaultbutton.setMaximumSize(QtCore.QSize(300, 25))
         font = QtGui.QFont()
         font.setFamily("Arial")
@@ -122,7 +122,7 @@ class Ui_MainWindow(object):
         self.acousticfreq_spinBox.setProperty("value", 1000000)
         self.acousticfreq_spinBox.setObjectName("acousticfreq_spinBox")
         self.acousticfreqlabel = QtWidgets.QLabel(self.frame)
-        self.acousticfreqlabel.setGeometry(QtCore.QRect(60, 10, 201, 21))
+        self.acousticfreqlabel.setGeometry(QtCore.QRect(30, 10, 201, 21))
         self.acousticfreqlabel.setStyleSheet("")
         self.acousticfreqlabel.setObjectName("acousticfreqlabel")
         self.frame_2 = QtWidgets.QFrame(self.centralwidget)
@@ -219,12 +219,12 @@ class Ui_MainWindow(object):
         self.alphaspinBox.raise_()
         self.manualalphalabel.raise_()
         self.magneticfieldsimlabel = QtWidgets.QLabel(self.centralwidget)
-        self.magneticfieldsimlabel.setGeometry(QtCore.QRect(610, 160, 310, 310))
+        self.magneticfieldsimlabel.setGeometry(QtCore.QRect(930, 10, 310, 310))
         self.magneticfieldsimlabel.setStyleSheet("background-color: rgb(0,0,0); border:2px solid rgb(255, 0, 0); ")
         self.magneticfieldsimlabel.setText("")
         self.magneticfieldsimlabel.setObjectName("magneticfieldsimlabel")
         self.savedatabutton = QtWidgets.QPushButton(self.centralwidget)
-        self.savedatabutton.setGeometry(QtCore.QRect(620, 120, 131, 31))
+        self.savedatabutton.setGeometry(QtCore.QRect(600, 120, 131, 31))
         self.savedatabutton.setStyleSheet("QPushButton {\n"
 "                color: rgb(0, 0, 0);\n"
 "                background-color: rgb(255, 255, 0);\n"
@@ -256,38 +256,6 @@ class Ui_MainWindow(object):
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
-        self.magneticfrequencydial = QtWidgets.QDial(self.frame_4)
-        self.magneticfrequencydial.setGeometry(QtCore.QRect(300, 10, 91, 101))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(12)
-        font.setBold(False)
-        font.setItalic(False)
-        self.magneticfrequencydial.setFont(font)
-        self.magneticfrequencydial.setStyleSheet("QDial {\n"
-"    background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:0 #1a5276, stop:0.3 #2980b9, stop:0.7 #3498db, stop:1 #1a5276);\n"
-"    border: 2px solid #1a5276;\n"
-"    padding: 5px;\n"
-"}\n"
-"\n"
-"QDial::handle {\n"
-"    background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:0 #f39c12, stop:0.3 #f1c40f, stop:0.7 #f39c12, stop:1 #f1c40f);\n"
-"    border: 2px solid #e67e22;\n"
-"    width: 20px;\n"
-"    height: 20px;\n"
-"    border-radius: 10px;\n"
-"    margin: -5px;\n"
-"}\n"
-"")
-        self.magneticfrequencydial.setMaximum(40)
-        self.magneticfrequencydial.setSingleStep(1)
-        self.magneticfrequencydial.setPageStep(1)
-        self.magneticfrequencydial.setProperty("value", 10)
-        self.magneticfrequencydial.setOrientation(QtCore.Qt.Horizontal)
-        self.magneticfrequencydial.setWrapping(False)
-        self.magneticfrequencydial.setNotchTarget(10.0)
-        self.magneticfrequencydial.setNotchesVisible(True)
-        self.magneticfrequencydial.setObjectName("magneticfrequencydial")
         self.psidial = QtWidgets.QDial(self.frame_4)
         self.psidial.setGeometry(QtCore.QRect(30, 10, 91, 101))
         self.psidial.setStyleSheet("QDial\n"
@@ -314,9 +282,6 @@ class Ui_MainWindow(object):
         self.gammalabel = QtWidgets.QLabel(self.frame_4)
         self.gammalabel.setGeometry(QtCore.QRect(180, 115, 121, 20))
         self.gammalabel.setObjectName("gammalabel")
-        self.rollingfrequencylabel = QtWidgets.QLabel(self.frame_4)
-        self.rollingfrequencylabel.setGeometry(QtCore.QRect(320, 115, 91, 21))
-        self.rollingfrequencylabel.setObjectName("rollingfrequencylabel")
         self.psilabel = QtWidgets.QLabel(self.frame_4)
         self.psilabel.setGeometry(QtCore.QRect(40, 115, 91, 21))
         self.psilabel.setObjectName("psilabel")
@@ -352,6 +317,15 @@ class Ui_MainWindow(object):
         self.gammadial.setNotchTarget(10.0)
         self.gammadial.setNotchesVisible(True)
         self.gammadial.setObjectName("gammadial")
+        self.magneticfrequencydial = QtWidgets.QDoubleSpinBox(self.frame_4)
+        self.magneticfrequencydial.setGeometry(QtCore.QRect(320, 80, 81, 41))
+        self.magneticfrequencydial.setDecimals(2)
+        self.magneticfrequencydial.setMaximum(60.0)
+        self.magneticfrequencydial.setProperty("value", 10.0)
+        self.magneticfrequencydial.setObjectName("magneticfrequencydial")
+        self.rollingfrequencylabel = QtWidgets.QLabel(self.frame_4)
+        self.rollingfrequencylabel.setGeometry(QtCore.QRect(290, 10, 121, 61))
+        self.rollingfrequencylabel.setObjectName("rollingfrequencylabel")
         self.joystickbutton = QtWidgets.QPushButton(self.centralwidget)
         self.joystickbutton.setGeometry(QtCore.QRect(10, 120, 141, 101))
         self.joystickbutton.setStyleSheet("QPushButton {\n"
@@ -439,6 +413,70 @@ class Ui_MainWindow(object):
         self.gradient_status_checkbox = QtWidgets.QCheckBox(self.centralwidget)
         self.gradient_status_checkbox.setGeometry(QtCore.QRect(60, 270, 91, 31))
         self.gradient_status_checkbox.setObjectName("gradient_status_checkbox")
+        self.import_excel_actions = QtWidgets.QPushButton(self.centralwidget)
+        self.import_excel_actions.setGeometry(QtCore.QRect(660, 160, 181, 41))
+        self.import_excel_actions.setStyleSheet("QPushButton {\n"
+"                color: rgb(255, 255, 255);\n"
+"                background-color: rgb(150, 150, 150);\n"
+"                border-style: outset;\n"
+"                border-width: 3px;\n"
+"                border-radius: 10px;\n"
+"                border-color: rgb(150, 150 150);\n"
+"                min-width: 1em;\n"
+"                padding: 6px;\n"
+"                font: bold 15px;\n"
+"            }\n"
+"\n"
+"            QPushButton:hover {\n"
+"                background-color: rgb(100, 100, 100);\n"
+"                color: rgb(255, 255, 255);\n"
+"                border-color: rgb(100, 100, 100);\n"
+"                padding-left: 5px;\n"
+"                padding-top: 5px;\n"
+"            }")
+        self.import_excel_actions.setCheckable(True)
+        self.import_excel_actions.setObjectName("import_excel_actions")
+        self.apply_actions = QtWidgets.QPushButton(self.centralwidget)
+        self.apply_actions.setGeometry(QtCore.QRect(660, 210, 181, 41))
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(False)
+        self.apply_actions.setFont(font)
+        self.apply_actions.setStyleSheet("QPushButton {\n"
+"                color: rgb(255, 255,255);\n"
+"                background-color: rgb(255, 0, 255);\n"
+"                border-style: outset;\n"
+"                border-width: 3px;\n"
+"                border-radius: 10px;\n"
+"                border-color: rgb(255, 0, 255);\n"
+"                min-width: 1em;\n"
+"                padding: 6px;\n"
+"                font: bold 15px;\n"
+"            }\n"
+"      \n"
+"            QPushButton:checked {\n"
+"                color: rgb(0, 0, 0);\n"
+"                background-color: rgb(255, 0, 0);\n"
+"                border-style: inset;\n"
+"                border-width: 3px;\n"
+"                border-radius: 10px;\n"
+"                border-color: rgb(255, 0, 0);\n"
+"                font: bold 16px;\n"
+"                min-width: 1em;\n"
+"              padding-left: 5px;\n"
+"                padding-top: 5px;\n"
+"               \n"
+"            }\n"
+"            QPushButton:hover {\n"
+"                background-color: rgb(100, 100, 100);\n"
+"                color: rgb(255, 255, 255);\n"
+"                border-color: rgb(100, 100, 100);\n"
+"                padding-left: 5px;\n"
+"                padding-top: 5px;\n"
+"            }")
+        self.apply_actions.setCheckable(True)
+        self.apply_actions.setObjectName("apply_actions")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -470,11 +508,14 @@ class Ui_MainWindow(object):
         self.manualalphalabel.setText(_translate("MainWindow", "Alpha:"))
         self.savedatabutton.setText(_translate("MainWindow", "Save Data"))
         self.gammalabel.setText(_translate("MainWindow", "Gamma: 90"))
-        self.rollingfrequencylabel.setText(_translate("MainWindow", "Freq: 10"))
         self.psilabel.setText(_translate("MainWindow", "Psi: 90"))
+        self.rollingfrequencylabel.setText(_translate("MainWindow", "Magnetic Rotating \n"
+"Frequency:"))
         self.joystickbutton.setText(_translate("MainWindow", "Joystick"))
         self.manualapplybutton.setText(_translate("MainWindow", "Apply"))
         self.swimradio.setText(_translate("MainWindow", "Swim"))
         self.rollradio.setText(_translate("MainWindow", "Roll"))
         self.gradient_status_checkbox.setText(_translate("MainWindow", "Gradient"))
+        self.import_excel_actions.setText(_translate("MainWindow", "Import Excel Actions"))
+        self.apply_actions.setText(_translate("MainWindow", "Apply Excel Actions"))
         self.actiondock.setText(_translate("MainWindow", "dock"))
